@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour {
 	#region vars
 	public float speed;
 	public CharacterController characterController;
+	public AnimationClip run;
+	public AnimationClip idle;
 
 	Vector3 _mousePosition;
 	#endregion
@@ -60,6 +62,10 @@ public class Movement : MonoBehaviour {
 			
 			//move player
 			characterController.SimpleMove (transform.forward * speed); 
+			//smoothen the transition
+			animation.CrossFade (run.name);
+		} else {
+			animation.CrossFade (idle.name);
 		}
 	}
 	#endregion
