@@ -37,6 +37,7 @@ public class Movement : MonoBehaviour {
 	/// </summary>
 	/// <returns>The position.</returns>
 	void locatePosition() {
+		//points from camera to where the ray hits against the terrain. 
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		//structure used to get information back from a raycast
 		RaycastHit hit;
