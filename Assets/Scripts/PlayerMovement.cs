@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	public CharacterController characterController;
 	public AnimationClip run;
 	public AnimationClip idle;
+	public static bool attacking;
 
 	Vector3 _mousePosition;
 	#endregion
@@ -25,11 +26,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0)) {
-			//lcoate position of the mouse
-			locatePosition();
+		if (!attacking) {
+			if(Input.GetMouseButtonDown(0)) {
+				//lcoate position of the mouse
+				locatePosition();
+			}
+			moveToMousePosition();
 		}
-		moveToMousePosition();
 	}
 
 	/// <summary>
