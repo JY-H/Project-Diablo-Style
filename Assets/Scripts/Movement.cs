@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour {
 	#region constants
 	const int _MAX_RAYCAST_DISTANCE = 1000; 
 	const int _PLAYER_TURN_SPEED = 12;
+	const int _MIN_MOVE_DISTANCE = 2; 
 	#endregion 
 
 	#region vars
@@ -51,7 +52,7 @@ public class Movement : MonoBehaviour {
 	/// Moves player to mouse position
 	/// </summary>
 	void moveToMousePosition() {
-		if (Vector3.Distance (_mousePosition, transform.position) > 1) {
+		if (Vector3.Distance (_mousePosition, transform.position) > _MIN_MOVE_DISTANCE) {
 			//get the direction player should be facing
 			Quaternion faceDirection = Quaternion.LookRotation (_mousePosition - transform.position);
 			
