@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 	#region constants
 	const int _MAX_RAYCAST_DISTANCE = 1000; 
 	const int _PLAYER_TURN_SPEED = 12;
