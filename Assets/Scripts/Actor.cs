@@ -14,6 +14,8 @@ public abstract class Actor : MonoBehaviour {
 
 	int _health; 
 	#endregion 
+
+	#region methods
 	// Use this for initialization
 	void Start () {
 		_health = 100; 	
@@ -64,4 +66,5 @@ public abstract class Actor : MonoBehaviour {
 		
 		animation.Play (die.name);
 	}
+	#endregion
 }
