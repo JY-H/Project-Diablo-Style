@@ -57,7 +57,7 @@ public class Mob: MonoBehaviour {
 	/// </summary>
 	void OnMouseOver() {
 		//upon mouseover, set mob to the target of the player's combat system. 
-		player.GetComponent<Combat> ().opponent = this.gameObject;
+		Combat.opponent = this.gameObject;
 	}
 	#endregion
 }

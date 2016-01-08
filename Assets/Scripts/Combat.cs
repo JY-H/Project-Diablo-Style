@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Combat : MonoBehaviour {
 	#region vars
-	public GameObject opponent; 
+	public static GameObject opponent; 
 	public AnimationClip attack; 
 
 	#endregion
@@ -20,12 +20,10 @@ public class Combat : MonoBehaviour {
 			Debug.Log (opponent.name);
 
 		//TODO: CHANGE MECHANISM TO CLICK INSTEAD 
+		//make sure opponent exists before we turn and attack
 		//space to attack 
-		if (Input.GetKey(KeyCode.Space)) {
-			//make sure opponent exists before we turn and attack
-			if (opponent) {
+		if (opponent && Input.GetKey(KeyCode.Space)) {
 				transform.LookAt(opponent.transform.position);
-			}
 
 			//play animation and lock movement 
 			animation.Play(attack.name);

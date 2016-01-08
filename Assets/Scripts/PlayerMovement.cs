@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	public CharacterController characterController;
 	public AnimationClip run;
 	public AnimationClip idle;
+	public AnimationClip waitToAttack;
 	public static bool attacking;
 
 	Vector3 _mousePosition;
@@ -69,8 +70,10 @@ public class PlayerMovement : MonoBehaviour {
 			characterController.SimpleMove (transform.forward * speed); 
 			//smoothen the transition
 			animation.CrossFade (run.name);
+		} else if (Combat.opponent) {
+			animation.CrossFade (waitToAttack.name);
 		} else {
-			animation.CrossFade (idle.name);
+			animation.CrossFade (idle.name);		
 		}
 	}
 	#endregion
