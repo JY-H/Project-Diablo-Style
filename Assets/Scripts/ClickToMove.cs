@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class ClickToMove : MonoBehaviour {
 	#region constants
 	const int _MAX_RAYCAST_DISTANCE = 1000; 
 	const int _PLAYER_TURN_SPEED = 12;
@@ -9,22 +9,17 @@ public class PlayerMovement : MonoBehaviour {
 	#endregion 
 
 	#region vars
-	public float speed;
-	public CharacterController characterController;
-	public AnimationClip run;
-	public AnimationClip idle;
-	public AnimationClip waitToAttack;
 	public static bool attacking;
 
 	Vector3 _mousePosition;
-	Combat _focus; 
+	Player _player; 
 	#endregion
 
 	#region methods
 	// Use this for initialization
 	void Start () {
 		_mousePosition = transform.position;
-		_focus = GetComponent<Combat> ();
+		_player = GetComponent<Player> ();
 	}
 	
 	// Update is called once per frame
@@ -74,15 +69,15 @@ public class PlayerMovement : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp (transform.rotation, faceDirection, Time.deltaTime * _PLAYER_TURN_SPEED);
 			
 			//move player
-			characterController.SimpleMove (transform.forward * speed); 
+			_player.controller.SimpleMove (transform.forward * _player.speed); 
 			//smoothen the transition
-			animation.CrossFade (run.name);
+			animation.CrossFade (_player.run.name);
 		
 		// if we have targeted an opponent, play attack idle animation 
-		} else if (_focus.opponent) {
-			animation.CrossFade (waitToAttack.name);
+		} else if (_player.enemy) {
+			animation.CrossFade (_player.waitToAttack.name);
 		} else {
-			animation.CrossFade (idle.name);		
+			animation.CrossFade (_player.idle.name);		
 		}
 	}
 	#endregion

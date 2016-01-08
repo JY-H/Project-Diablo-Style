@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Combat : MonoBehaviour {
+public class Player : Actor {
 	#region vars
-	public Mob opponent; 
-	public AnimationClip attack;
+	public float speed;
 	public float range;
-	public int damage; 
-
 	public double impactTime; 
 
 	bool _impacted; 
@@ -15,16 +12,11 @@ public class Combat : MonoBehaviour {
 	#endregion
 
 	#region methods
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
 		//if enemy is dead, clear focus
-		if (opponent && opponent.isDead ()) {
-			opponent = null; 
+		if (enemy && enemy.isDead ()) {
+			enemy = null; 
 		}
 
 		//TODO: CHANGE MECHANISM TO CLICK INSTEAD 
@@ -32,16 +24,16 @@ public class Combat : MonoBehaviour {
 		//		vs. DISPLAYING " I NEED A TARGET " TEXT. 
 		//		vs. AUTO-SELECTING CLOSEST ENEMY. 
 		//make sure opponent exists and is in range before we turn and attack
-		if (opponent && Input.GetKey(KeyCode.Space) && inRange ()) {
-			transform.LookAt(opponent.transform.position);
+		if (enemy && Input.GetKey(KeyCode.Space) && inRange (enemy, range)) {
+			transform.LookAt(enemy.transform.position);
 			//play animation and lock movement 
 			animation.Play(attack.name);
-			PlayerMovement.attacking = true; 
+			ClickToMove.attacking = true; 
 		}
 
 		//reset lock once animation finishes
 		if (animation[attack.name].time >= animation[attack.name].length * 0.9) {
-			PlayerMovement.attacking = false; 
+			ClickToMove.attacking = false; 
 			_impacted = false; 
 		}
 
@@ -56,26 +48,17 @@ public class Combat : MonoBehaviour {
 	/// Impact is determined by the animation, where the weapon is extended to attack 
 	/// </summary>
 	void impact() {
-		if (opponent && animation.IsPlaying (attack.name)) {
+		if (enemy && animation.IsPlaying (attack.name)) {
 			float currentTime = animation[attack.name].time; 
 			float totalLength = animation[attack.name].length;
 
 			//impact when dagger's most extended. 
 			if (currentTime >= totalLength * impactTime && currentTime < totalLength * 0.9) {
-				opponent.getHit (damage);
+				enemy.getHit (damage);
 				_impacted = true; 
 			}
 		}
 	}
-
-	/// <summary>
-	/// Checks whether enemy is in range for attack
-	/// </summary>
-	/// <returns><c>true</c>, if in range, <c>false</c> otherwise.</returns>
-	bool inRange() {
-		return opponent && Vector3.Distance (opponent.transform.position, this.transform.position) <= range; 
-	}
-
 
 	#endregion
 }
