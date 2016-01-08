@@ -17,12 +17,14 @@ public class PlayerMovement : MonoBehaviour {
 	public static bool attacking;
 
 	Vector3 _mousePosition;
+	Combat _focus; 
 	#endregion
 
 	#region methods
 	// Use this for initialization
 	void Start () {
 		_mousePosition = transform.position;
+		_focus = GetComponent<Combat> ();
 	}
 	
 	// Update is called once per frame
@@ -44,11 +46,15 @@ public class PlayerMovement : MonoBehaviour {
 	void locatePosition() {
 		//points from camera to where the ray hits against the terrain. 
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+
 		//structure used to get information back from a raycast
 		RaycastHit hit;
+
 		if (Physics.Raycast (ray, out hit, _MAX_RAYCAST_DISTANCE)) {
-			//retrieve coordinates from raycast and store it as position
-			_mousePosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+			//make sure we are not trying to get to players or enemys positions
+			//which are already occupied. 
+			if (hit.collider.tag != "Player" && hit.collider.tag != "Enemy")
+				_mousePosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 		}
 	}
 
@@ -63,6 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 			//only rotate y 
 			faceDirection.x = 0f;
 			faceDirection.z = 0f;
+
 			//face the direction to move to
 			transform.rotation = Quaternion.Slerp (transform.rotation, faceDirection, Time.deltaTime * _PLAYER_TURN_SPEED);
 			
@@ -70,7 +77,9 @@ public class PlayerMovement : MonoBehaviour {
 			characterController.SimpleMove (transform.forward * speed); 
 			//smoothen the transition
 			animation.CrossFade (run.name);
-		} else if (Combat.opponent) {
+		
+		// if we have targeted an opponent, play attack idle animation 
+		} else if (_focus.opponent) {
 			animation.CrossFade (waitToAttack.name);
 		} else {
 			animation.CrossFade (idle.name);		
