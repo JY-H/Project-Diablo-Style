@@ -18,24 +18,32 @@ public class Player : Actor {
 			enemy = null; 
 		}
 
-		//TODO: CHANGE MECHANISM TO CLICK INSTEAD 
-		//TODO: CONSIDER ALLOWING ATTACKS WHEN NO OPPONENT IS SELECTED
-		//		vs. DISPLAYING " I NEED A TARGET " TEXT. 
-		//		vs. AUTO-SELECTING CLOSEST ENEMY. 
-		//make sure opponent exists and is in range before we turn and attack
-		if (enemy && Input.GetKey(KeyCode.Space) && inRange (enemy, range)) {
-			transform.LookAt(enemy.transform.position);
-			//play animation and lock movement 
-			animationController.Play(attack.name);
-			ClickToMove.attacking = true; 
-		}
-
 		//reset lock once animation finishes
 		if (animationController[attack.name].time >= animationController[attack.name].length * 0.9) {
 			ClickToMove.attacking = false; 
 			_impacted = false; 
 		}
 
+		//TODO: CHANGE MECHANISM TO CLICK INSTEAD 
+		//TODO: CONSIDER ALLOWING ATTACKS WHEN NO OPPONENT IS SELECTED
+		//		vs. DISPLAYING " I NEED A TARGET " TEXT. 
+		//		vs. AUTO-SELECTING CLOSEST ENEMY. 
+		//make sure opponent exists and is in range before we turn and attack
+		if (enemy && Input.GetKey(KeyCode.Space) && inRange (enemy, range)) {
+			attackEnemy();
+		}
+
+	}
+
+	/// <summary>
+	/// Attacks the enemy.
+	/// </summary>
+	public override void attackEnemy() {
+		base.attackEnemy ();
+
+		//lock movement for player
+		ClickToMove.attacking = true; 
+		
 		//only impact opponent once. 
 		if (!_impacted) {
 			impact ();

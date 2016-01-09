@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Actor : MonoBehaviour {
+public abstract class Actor : MonoBehaviour, IThreat {
 	#region vars
 	public CharacterController controller; 
 	public AnimationClip run;
@@ -44,6 +44,16 @@ public abstract class Actor : MonoBehaviour {
 	/// <param name="target">Target.</param>
 	public bool inRange(Actor target, float range) {
 		return Vector3.Distance(target.transform.position, this.transform.position) <= range;
+	}
+
+	/// <summary>
+	/// Attacks the enemy.
+	/// </summary>
+	public virtual void attackEnemy() {
+		//look at enemy
+		transform.LookAt(enemy.transform.position);
+		//play attack animation
+		animationController.Play(attack.name);
 	}
 
 	/// <summary>

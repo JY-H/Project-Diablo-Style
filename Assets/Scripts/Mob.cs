@@ -24,8 +24,7 @@ public class Mob: Actor {
 					_impacted = false; 
 				}		
 				if (!enemy.isDead()) {
-					animationController.Play(attack.name);
-					attackEnemey(); 
+					attackEnemy();
 				}
 			}
 		}
@@ -42,7 +41,13 @@ public class Mob: Actor {
 		animationController.CrossFade (run.name);
 	}
 
-	public virtual void attackEnemey() {
+	/// <summary>
+	/// Attacks the enemy.
+	/// </summary>
+	public override void attackEnemy() {
+		base.attackEnemy ();
+
+		//impact
 		if (!_impacted && enemy && animationController.IsPlaying (attack.name)) {
 			float currentTime = animationController[attack.name].time; 
 			float totalLength = animationController[attack.name].length;
@@ -54,6 +59,7 @@ public class Mob: Actor {
 			}
 		}
 	}
+
 	/// <summary>
 	/// Raises the mouse over event.
 	/// Set the current object as the player's opponent upon mouseover. 
