@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Player : Actor {
 	#region vars
-	public float speed;
-	public float range;
 	public double impactTime; 
 
 	bool _impacted; 
@@ -27,12 +25,12 @@ public class Player : Actor {
 		if (enemy && Input.GetKey(KeyCode.Space) && inRange (enemy, range)) {
 			transform.LookAt(enemy.transform.position);
 			//play animation and lock movement 
-			animation.Play(attack.name);
+			animationController.Play(attack.name);
 			ClickToMove.attacking = true; 
 		}
 
 		//reset lock once animation finishes
-		if (animation[attack.name].time >= animation[attack.name].length * 0.9) {
+		if (animationController[attack.name].time >= animationController[attack.name].length * 0.9) {
 			ClickToMove.attacking = false; 
 			_impacted = false; 
 		}
@@ -48,9 +46,9 @@ public class Player : Actor {
 	/// Impact is determined by the animation, where the weapon is extended to attack 
 	/// </summary>
 	void impact() {
-		if (enemy && animation.IsPlaying (attack.name)) {
-			float currentTime = animation[attack.name].time; 
-			float totalLength = animation[attack.name].length;
+		if (enemy && animationController.IsPlaying (attack.name)) {
+			float currentTime = animationController[attack.name].time; 
+			float totalLength = animationController[attack.name].length;
 
 			//impact when dagger's most extended. 
 			if (currentTime >= totalLength * impactTime && currentTime < totalLength * 0.9) {

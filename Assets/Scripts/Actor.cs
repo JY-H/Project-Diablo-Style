@@ -10,15 +10,21 @@ public abstract class Actor : MonoBehaviour {
 	public AnimationClip waitToAttack;
 	public AnimationClip attack;
 	public int damage;
+	public float speed; 
+	public float range;
 	public Actor enemy;
 
+	[HideInInspector]
+	public Animation animationController; 
+	
 	int _health; 
-	#endregion 
+	#endregion
 
 	#region methods
 	// Use this for initialization
 	void Start () {
 		_health = 100; 	
+		animationController = GetComponent<Animation> ();
 	}
 	
 	// Update is called once per frame
@@ -60,11 +66,12 @@ public abstract class Actor : MonoBehaviour {
 	/// Upon animation completion, destroy gameobject. 
 	/// </summary>
 	void onDeath() {
-		if (animation [die.name].time >= 0.9 * animation [die.name].length) {
+		speed = 0; 
+		if (animationController[die.name].time >= 0.9 * animationController[die.name].length) {
 			Destroy(gameObject);
 		}
 		
-		animation.Play (die.name);
+		animationController.Play (die.name);
 	}
 	#endregion
 }

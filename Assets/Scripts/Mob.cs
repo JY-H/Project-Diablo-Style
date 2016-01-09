@@ -2,12 +2,6 @@
 using System.Collections;
 
 public class Mob: Actor {
-	#region vars
-	public float speed; 
-	public float range;
-	
-	#endregion
-
 	#region methods
 	// Update is called once per frame
 	public override void Update () {
@@ -16,7 +10,7 @@ public class Mob: Actor {
 		if (!inRange(enemy, range)) {
 			chase ();
 		} else {
-			animation.CrossFade(idle.name);
+			animationController.CrossFade(idle.name);
 		}
 	}
 
@@ -28,7 +22,7 @@ public class Mob: Actor {
 		transform.LookAt (enemy.transform.position);
 		controller.SimpleMove (transform.forward * speed); 
 		//animation
-		animation.CrossFade (run.name);
+		animationController.CrossFade (run.name);
 	}
 
 	/// <summary>

@@ -71,13 +71,13 @@ public class ClickToMove : MonoBehaviour {
 			//move player
 			_player.controller.SimpleMove (transform.forward * _player.speed); 
 			//smoothen the transition
-			animation.CrossFade (_player.run.name);
+			_player.animationController.CrossFade (_player.run.name);
 		
 		// if we have targeted an opponent, play attack idle animation 
 		} else if (_player.enemy) {
-			animation.CrossFade (_player.waitToAttack.name);
+			_player.animationController.CrossFade (_player.waitToAttack.name);
 		} else {
-			animation.CrossFade (_player.idle.name);		
+			_player.animationController.CrossFade (_player.idle.name);		
 		}
 	}
 	#endregion
