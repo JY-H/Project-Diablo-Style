@@ -60,7 +60,7 @@ public class Mob: Actor {
 	/// </summary>
 	void OnMouseOver() {
 		//upon mouseover, set mob to the target of the player's combat system. 
-		enemy.GetComponent<Player>().enemy = this;
+		enemy.enemy = this;
 	}
 
 	public override void onDeath() {

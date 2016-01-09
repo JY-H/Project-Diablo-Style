@@ -6,3 +6,4 @@ Making a diablo-styled RPG game for funsies.
    * Click to Move
    * Camera Follow
    * Combat System (Mobs locate player and attack, Player allowed to attack if in range)
+   * Health Bars
