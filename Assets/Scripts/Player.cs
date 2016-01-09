@@ -12,6 +12,7 @@ public class Player : Actor {
 	#region methods
 	// Update is called once per frame
 	public override void Update () {
+		base.Update ();
 		//if enemy is dead, clear focus
 		if (enemy && enemy.isDead ()) {
 			enemy = null; 
@@ -58,5 +59,13 @@ public class Player : Actor {
 		}
 	}
 
+	public override void onDeath() {
+		//quit game
+		if (animationController[die.name].time >= 0.9 * animationController[die.name].length) {
+			Debug.Log ("GAME OVER");
+			Application.Quit ();
+		}
+		base.onDeath ();
+	}
 	#endregion
 }

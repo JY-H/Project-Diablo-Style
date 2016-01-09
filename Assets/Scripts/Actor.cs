@@ -9,6 +9,7 @@ public abstract class Actor : MonoBehaviour {
 	public AnimationClip die; 
 	public AnimationClip waitToAttack;
 	public AnimationClip attack;
+	public AnimationClip hit;
 	public int damage;
 	public float speed; 
 	public float range;
@@ -32,6 +33,7 @@ public abstract class Actor : MonoBehaviour {
 		//check if still alive 
 		if (isDead ()) {
 			onDeath();
+			return;
 		}
 	}
 
@@ -50,7 +52,11 @@ public abstract class Actor : MonoBehaviour {
 	/// <param name="dmg">Dmg.</param>
 	public void getHit(int dmg) {
 		_health -= dmg; 
-		Debug.Log (_health);
+		Debug.Log (this.name + " HP: " + _health);
+		if (!animationController.IsPlaying (attack.name) && !animationController.IsPlaying(die.name)) {
+			animationController.CrossFade(hit.name);
+			animationController.Play(hit.name);
+		}
 	}
 
 	/// <summary>
@@ -65,13 +71,10 @@ public abstract class Actor : MonoBehaviour {
 	/// Upon death, play die animation. 
 	/// Upon animation completion, destroy gameobject. 
 	/// </summary>
-	void onDeath() {
-		speed = 0; 
-		if (animationController[die.name].time >= 0.9 * animationController[die.name].length) {
-			Destroy(gameObject);
-		}
-		
+	public virtual void onDeath() {
+		speed = 0;
 		animationController.Play (die.name);
+
 	}
 	#endregion
 }

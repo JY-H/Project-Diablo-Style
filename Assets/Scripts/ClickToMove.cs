@@ -24,7 +24,7 @@ public class ClickToMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!attacking) {
+		if (!attacking & !_player.isDead()) {
 			if(Input.GetMouseButtonDown(0)) {
 				//lcoate position of the mouse
 				locatePosition();
