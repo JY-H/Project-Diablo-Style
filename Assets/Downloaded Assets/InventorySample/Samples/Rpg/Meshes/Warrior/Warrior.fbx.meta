@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 673a89163796c8e41a3aecd7345c173e
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Red_Cape
+    100002: Roman_Helmet
+    100004: Round_Shield
+    100006: Sword
+    100008: //RootNode
+    100010: Warrior
+    100012: Wrist
+    100014: arm_l
+    100016: arm_r
+    100018: calf_l
+    100020: calf_r
+    100022: chest
+    100024: foot_l
+    100026: foot_r
+    100028: forearm_l
+    100030: forearm_r
+    100032: hand_l
+    100034: hand_r
+    100036: head
+    100038: knee_l
+    100040: knee_r
+    100042: leg_ik_l
+    100044: leg_ik_r
+    100046: neck
+    100048: pelvis
+    100050: shoulder_l
+    100052: shoulder_r
+    100054: Skeleton
+    100056: spine
+    100058: thigh_l
+    100060: thigh_r
+    100062: toe_l
+    100064: toe_r
+    400000: Red_Cape
+    400002: Roman_Helmet
+    400004: Round_Shield
+    400006: Sword
+    400008: //RootNode
+    400010: Warrior
+    400012: Wrist
+    400014: arm_l
+    400016: arm_r
+    400018: calf_l
+    400020: calf_r
+    400022: chest
+    400024: foot_l
+    400026: foot_r
+    400028: forearm_l
+    400030: forearm_r
+    400032: hand_l
+    400034: hand_r
+    400036: head
+    400038: knee_l
+    400040: knee_r
+    400042: leg_ik_l
+    400044: leg_ik_r
+    400046: neck
+    400048: pelvis
+    400050: shoulder_l
+    400052: shoulder_r
+    400054: Skeleton
+    400056: spine
+    400058: thigh_l
+    400060: thigh_r
+    400062: toe_l
+    400064: toe_r
+    2300000: Red_Cape
+    2300002: Roman_Helmet
+    2300004: Round_Shield
+    2300006: Sword
+    2300008: Warrior
+    2300010: Wrist
+    3300000: Red_Cape
+    3300002: Roman_Helmet
+    3300004: Round_Shield
+    3300006: Sword
+    3300008: Warrior
+    3300010: Wrist
+    4300000: Sword
+    4300002: Round_Shield
+    4300004: Roman_Helmet
+    4300006: Warrior
+    4300008: Red_Cape
+    4300010: Wrist
+    7400000: Default Take
+    7400002: Idle
+    7400004: Drink_Potion
+    9500000: //RootNode
+    13700000: Red_Cape
+    13700002: Roman_Helmet
+    13700004: Round_Shield
+    13700006: Sword
+    13700008: Warrior
+    13700010: Wrist
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

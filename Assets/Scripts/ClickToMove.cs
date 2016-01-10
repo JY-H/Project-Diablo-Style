@@ -48,7 +48,8 @@ public class ClickToMove : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit, _MAX_RAYCAST_DISTANCE)) {
 			//make sure we are not trying to get to players or enemys positions
 			//which are already occupied. 
-			if (hit.collider.tag != "Player" && hit.collider.tag != "Enemy")
+			Debug.Log(hit.collider.tag);
+			if (hit.collider.tag != "Player" && hit.collider.tag != "Enemy" && hit.collider.tag != "Inventory")
 				_mousePosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 		}
 	}
